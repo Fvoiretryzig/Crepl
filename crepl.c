@@ -78,7 +78,7 @@ int main()
 		}
 		printf(">> ");
 	}
-	fclose(fp); //remove(filename);
-	//remove(libname);
+	fclose(fp); remove(filename);
+	remove(libname);
 	return 0;
 }
