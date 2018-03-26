@@ -64,9 +64,9 @@ int main()
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
 		}
-		printf(">>");
+		printf(">> ");
 	}
-	fclose(fp); remove(filename);
-	remove(libname);
+	fclose(fp); //remove(filename);
+	//remove(libname);
 	return 0;
 }
