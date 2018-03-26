@@ -74,10 +74,7 @@ int main()
 			}
 			int value = func(); // 通过函数指针调用
 			printf(">> %s = %d.\n", code, value);	
-			fclose(fp);
-			fp = fopen(filename, "w");
-			fclose(fp);
-			dlclose(handle);	
+			//dlclose(handle);	
 		}
 		printf(">> ");
 	}
