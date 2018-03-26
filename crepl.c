@@ -21,12 +21,14 @@ void *func_lookup(char *name)
     if(!handle){  
 		fputs(dlerror(), stderr);  
 		//exit(1);  
-		printf("this is the first if in func_lookup\n");
+		//printf("this is the first if in func_lookup\n");
+		return 0;
 	}      
 	func = dlsym(handle, name);  
 	if((error = dlerror()) != NULL){  
 		fputs(error, stderr);  
-		printf("this is the second if in func_lookup\n");
+		//printf("this is the second if in func_lookup\n");
+		return 0;
 		//exit(1);  
 	}  
     return func;   
@@ -64,6 +66,10 @@ int main()
 			}	
 			printf("this is after syscall\n");
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
+			if(func == 0){
+				printf("error while open dyn lib\n");
+				continue;
+			}
 			int value = func(); // 通过函数指针调用
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
