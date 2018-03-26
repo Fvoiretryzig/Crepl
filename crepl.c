@@ -58,7 +58,7 @@ int main()
 			sprintf(expr_name, "%s%d", expr_name, cmd_id++);
 			printf("expr_name:%s\n", expr_name);
 			code[strlen(code)-1] = '\0';
-			char *fun = "";
+			char fun[1024] = "";
 			sprintf(fun, "int %s(){return %s;}\n", expr_name, code);
 			printf("fun:%s\n", fun);
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);	
