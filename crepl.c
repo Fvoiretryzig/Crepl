@@ -37,14 +37,14 @@ int main()
 	FILE *fp = fopen(filename, "a+");
 	printf(">> ");
 	while(fgets(code, sizeof(code), stdin) != NULL){
-		if(*code[0] == "i" && *code[1] == "n" && code[2] == "t"){		//如果为函数,生成一个动态链接库
+		if(code[0] == 'i' && code[1] == 'n' && code[2] == 't'){		//如果为函数,生成一个动态链接库
 			fprintf(fp, "%s", code);
 			if(system(cmd_so)){
 				printf("error while linking\n");
 				continue;
 			}
 		}
-		else if(code[0] == "e" && code[1] == "x" && code[2] == "i" && code[3] == "t"){
+		else if(code[0] == 'e' && code[1] == 'x' && code[2] == 'i' && code[3] == 't'){
 			 break;
 		}
 		else{		//如果是表达式，如果是字母开头是函数，如果是数字开头是表达式
