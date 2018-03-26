@@ -20,16 +20,12 @@ void *func_lookup(char *name)
     handle = dlopen("./temp_code.so", RTLD_LAZY);  
     if(!handle){  
 		fputs(dlerror(), stderr);  
-		//exit(1);  
-		//printf("this is the first if in func_lookup\n");
-		return 0;
+		exit(1);  
 	}      
 	func = dlsym(handle, name);  
 	if((error = dlerror()) != NULL){  
 		fputs(error, stderr);  
-		//printf("this is the second if in func_lookup\n");
-		return 0;
-		//exit(1);  
+		exit(1);  
 	}  
     return func;   
 }
@@ -57,32 +53,24 @@ int main()
 			//printf("this is before sprintf\n");
 			sprintf(expr_name, "%s%d", expr_name, cmd_id++);
 			printf("expr_name:%s\n", expr_name);
-			code[strlen(code)-1] = '\0';
-			char fun[1024] = "";
-			sprintf(fun, "int %s(){return %s;}\n", expr_name, code);
-			printf("fun:%s\n", fun);
-			fputs(fun, fp);
-//			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);	
+			printf("code before do:%s\n", code);
+			code[strlen(code)-1] = "\0";
+			printf("code after do:%s\n", code);
+			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
 			printf("this is before system\n");
 			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
 				printf("error while linking\n");
-				printf(">> ");
 				continue;
 			}	
 			printf("this is after syscall\n");
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
-			if(func == 0){
-				printf("error while open dyn lib\n");
-				printf(">> ");
-				continue;
-			}
 			int value = func(); // 通过函数指针调用
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
 		}
 		printf(">> ");
 	}
-	fclose(fp); //remove(filename);
-	//remove(libname);
+	fclose(fp); remove(filename);
+	remove(libname);
 	return 0;
 }
