@@ -48,7 +48,7 @@ int main()
 			 break;
 		}
 		else{		//如果是表达式，如果是字母开头是函数，如果是数字开头是表达式
-			char *expr_name = "__expr_wrap_";
+			char expr_name[] = "__expr_wrap_";
 			printf("this is before sprintf\n");
 			sprintf(expr_name, "%s%d", expr_name, cmd_id);
 			printf("expr_name:%s\n", expr_name);
