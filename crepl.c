@@ -53,6 +53,9 @@ int main()
 			//printf("this is before sprintf\n");
 			sprintf(expr_name, "%s%d", expr_name, cmd_id++);
 			printf("expr_name:%s\n", expr_name);
+			printf("code before do:%s\n", code);
+			code[strlen(code)-1] = "\0";
+			printf("code after do:%s\n", code);
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
 			printf("this is before system\n");
 			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
