@@ -20,12 +20,14 @@ void *func_lookup(char *name)
     handle = dlopen("./temp_code.so", RTLD_LAZY);  
     if(!handle){  
 		fputs(dlerror(), stderr);  
-		exit(1);  
+		//exit(1);  
+		printf("this is the first if in func_lookup\n");
 	}      
 	func = dlsym(handle, name);  
 	if((error = dlerror()) != NULL){  
 		fputs(error, stderr);  
-		exit(1);  
+		printf("this is the second if in func_lookup\n");
+		//exit(1);  
 	}  
     return func;   
 }
