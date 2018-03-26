@@ -38,7 +38,7 @@ int main()
 {
 	/*创建文件，用来存放代码*/
 	char *cmd_so = "gcc temp_code.c -shared -fPIC -o temp_code.so -ldl";
-	FILE *fp = fopen(filename, "w");
+	FILE *fp = fopen(filename, "r+");
 	printf(">> ");
 	while(fgets(code, sizeof(code), stdin) != NULL){
 		//printf("this is at 40 lines code:%s\n", code);
