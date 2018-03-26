@@ -20,12 +20,14 @@ void *func_lookup(char *name)
     handle = dlopen("./temp_code.so", RTLD_LAZY);  
     if(!handle){  
 		fputs(dlerror(), stderr);  
-		exit(1);  
+		//exit(1);  
+		return 0;
 	}      
 	func = dlsym(handle, name);  
 	if((error = dlerror()) != NULL){  
 		fputs(error, stderr);  
-		exit(1);  
+//		exit(1);  
+		return 0;
 	}  
     return func;   
 }
@@ -64,6 +66,10 @@ int main()
 			}	
 			printf("this is after syscall\n");
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
+			if(func == 0){
+				printf("\n");
+				continue;
+			}
 			int value = func(); // 通过函数指针调用
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
