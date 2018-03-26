@@ -58,7 +58,7 @@ int main()
 			printf("code before do:%s\n", code);
 			code[strlen(code)-1] = '\0';
 			printf("code after do:%s\n", code);
-			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
+			fprintf(fp, "int %s(){return %s;}\nEOF", expr_name, code);
 			printf("this is before system\n");
 			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
 				printf("error while linking\n");
