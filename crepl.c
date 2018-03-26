@@ -62,13 +62,13 @@ int main()
 			printf("this is before system\n");
 			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
 				printf("error while linking\n");
-				printf("<< ");
+				printf(">> ");
 				continue;
 			}	
 			printf("this is after syscall\n");
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
 			if(func == 0){
-				printf("\n<< ");
+				printf("\n>> ");
 				continue;
 			}
 			int value = func(); // 通过函数指针调用
