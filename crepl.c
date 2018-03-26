@@ -62,7 +62,7 @@ int main()
 		}
 		printf(">>");
 	}
-	fclose(filename); remove(filename);
+	fclose(fp); remove(filename);
 	remove(libname);
 	return 0;
 }
