@@ -33,7 +33,6 @@ void *func_lookup(char *name)
 int main() 
 {
 	/*创建文件，用来存放代码*/
-
 	char *cmd_so = "gcc temp_code.c -shared -fPIC -o temp_code.so";
 	FILE *fp = fopen(filename, "a+");
 	printf(">> ");
@@ -63,7 +62,7 @@ int main()
 		}
 		printf(">>");
 	}
-	close(filename); remove(filename);
-	close(libname); remove(libname);
+	fclose(filename); remove(filename);
+	remove(libname);
 	return 0;
 }
