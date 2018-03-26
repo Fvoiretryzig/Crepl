@@ -48,6 +48,7 @@ int main()
 			 break;
 		}
 		else{		//如果是表达式，如果是字母开头是函数，如果是数字开头是表达式
+			printf("this is expr\n");
 			char *expr_name = "__expr_wrap_";
 			sprintf(expr_name, "%s%d", expr_name, cmd_id);
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
