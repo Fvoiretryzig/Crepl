@@ -37,7 +37,7 @@ int main()
 	FILE *fp = fopen(filename, "a+");
 	printf(">> ");
 	while(fgets(code, sizeof(code), stdin) != NULL){
-		printf("this is at 40 lines code:%s\n", code);
+		//printf("this is at 40 lines code:%s\n", code);
 		if(code[0] == 'i' && code[1] == 'n' && code[2] == 't'){		//如果为函数,生成一个动态链接库
 			fprintf(fp, "%s", code);
 			if(system(cmd_so)){
