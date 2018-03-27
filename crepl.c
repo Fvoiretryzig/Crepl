@@ -40,7 +40,7 @@ int main()
 {
 	/*创建文件，用来存放代码*/
 	char *cmd_so = "gcc code.c -Werror -shared -fPIC -o code.so -ldl";
-	char *cmd_check = "gcc check_code.c -Werror -shared -fPIC -o check_code.so -ldl";
+	//char *cmd_check = "gcc check_code.c -Werror -shared -fPIC -o check_code.so -ldl";
 	FILE *fp = fopen(filename, "w+");
 	printf(">> ");
 	while(fgets(code, sizeof(code), stdin) != NULL){
@@ -93,7 +93,7 @@ int main()
 		printf(">> ");
 	}
 	fclose(fp); remove(filename);
-	remove(check_filename);
+	//remove(check_filename);
 	remove(libname);
 	return 0;
 }
