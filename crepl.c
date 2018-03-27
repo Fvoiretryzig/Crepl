@@ -62,11 +62,6 @@ char *getfileall(FILE *fp_cp)
     char *str;  
     char txt[1000];  
     int filesize;  
-    /*if ((fp=fopen(fname,"a+"))==NULL){  
-        printf("打开文件%s错误\n",fname);  
-        return NULL;  
-    }  */
-  	//fprintf(fp, "hayiwojfds\nfj40432432432404djsfo\n32rwef");
     fseek(fp_cp,0,SEEK_END);   
   
     filesize = ftell(fp_cp);  
@@ -77,7 +72,6 @@ char *getfileall(FILE *fp_cp)
     while((fgets(txt,1000,fp_cp))!=NULL){  
         strcat(str,txt);  
     }  
-    fclose(fp_cp);  
     return str;  
 }  
 
@@ -120,13 +114,6 @@ int main()
 			code[strlen(code)-1] = '\0';
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
 			fflush(fp);
-			/*if(system(cmd_so)){		//把求值变为函数再加入到动态库中
-				printf("error while linking\n");
-				printf(">> ");
-				//把存的正确的复制过去再编译？
-				//copyFile(fp, fp_cp);
-				continue;
-			}	*/
 			if(system(cmd_so)){
 				printf("error while linking at line 131\n");
 				printf(">> ");
