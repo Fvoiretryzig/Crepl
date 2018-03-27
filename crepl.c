@@ -21,7 +21,6 @@ void *func_lookup(char *name)
     if(!handle){  
 		fputs(dlerror(), stderr);  
 		return 0;
-		printf("hahah\n");
 	}      
 	func = dlsym(handle, name);  
 	if((error = dlerror()) != NULL){  
@@ -60,6 +59,7 @@ int main()
 				continue;
 			}	
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
+			printf("this is after lookup\n");
 			if(func == 0){
 				printf("\n>> ");
 				continue;
