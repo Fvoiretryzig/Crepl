@@ -97,9 +97,14 @@ int main()
 				printf(">> ");
 				//copyFile(fp, fp_cp);
 				char *temp = getfileall(fp_cp);
-				printf("temp:%s\n", temp);
-				exit(0);
-				
+				//printf("temp:%s\n", temp);
+				fclose(fp);
+				fp = fopen(filename, "w+");
+				fprintf(fp, "%s", temp);
+				if(system(cmd_so)){
+					printf("!!!!\n");
+					exit(1);
+				}
 				continue;
 			}
 			fprintf(fp_cp, "%s", code);	//存一个副本
