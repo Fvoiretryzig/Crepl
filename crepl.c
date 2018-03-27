@@ -97,10 +97,11 @@ int main()
 				printf(">> ");
 				//copyFile(fp, fp_cp);
 				char *temp = getfileall(fp_cp);
-				//printf("temp:%s\n", temp);
+				printf("temp:%s\n", temp);
 				fclose(fp);
 				fp = fopen(filename, "w+");
 				fprintf(fp, "%s", temp);
+				fflush(fp);
 				if(system(cmd_so)){
 					printf("!!!!\n");
 					exit(1);
