@@ -63,15 +63,17 @@ char *getfileall(FILE *fp_cp)
     char txt[1000];  
     int filesize;  
     fseek(fp_cp,0,SEEK_END);   
-  
+  	printf("I am at 66 line\n");
     filesize = ftell(fp_cp);  
     str=(char *)malloc(filesize);  
     str[0]=0;  
   
     rewind(fp_cp);  
+    printf("I am at 72 line\n");
     while((fgets(txt,1000,fp_cp))!=NULL){  
         strcat(str,txt);  
     }  
+    printf("I am at 76 line\n");
     return str;  
 }  
 
