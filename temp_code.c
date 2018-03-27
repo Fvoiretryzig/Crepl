@@ -1,2 +1,2 @@
-int __expr_wrap_0(){return 1+1;}
-int __expr_wrap_1(){return 1+1;}
+int a(int a){return b(1);}
+int __expr_wrap_0(){return a(1);}
