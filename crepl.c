@@ -30,31 +30,6 @@ void *func_lookup(char *name)
     return func;   
 }
 
-/*void copyFile(FILE* fp, FILE* fp_cp)
-{
-	char ch ;
-	fclose(fp);
-	if ((fp = fopen(filename,"w+")) == NULL)
-	{
-		printf("canot find the in.txt file!\n");
-		exit(0);
-	}
-	ch = fgetc(fp_cp);
-	printf("%c\n", ch);
-	while (ch!=EOF)
-	{	printf("this is while\n");
-		printf("%c\n", ch);
-		fputc(ch,fp);
-		putchar(ch);
-		ch = fgetc(fp_cp);
-	}
-	if(system(cmd_so)){
-		printf("what??????\n");
-		exit(1);
-	}
-	return ;
-}*/
-
 void copyFile(FILE* fp, FILE* fp_cp)  
 {    
     //char *str;  
@@ -66,6 +41,7 @@ void copyFile(FILE* fp, FILE* fp_cp)
     //str=(char *)malloc(filesize);  
     //str[0]=0;  
     char str[4096] = "";
+    str[0] = 0;
     //rewind(fp);  
     while((fgets(txt,4096,fp))!=NULL){  
         strcat(str,txt);  
