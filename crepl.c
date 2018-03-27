@@ -35,7 +35,7 @@ void copyFile(FILE* fp, FILE* fp_cp)
 {
 	char ch ;
 	fclose(fp);
-	if ((fp = fopen(in,"w+")) == NULL) //in.txt 和out.txt 都在当前工作目录下存放
+	if ((fp = fopen(filename,"w+")) == NULL)
 	{
 		printf("canot find the in.txt file!\n");
 		exit(0);
