@@ -50,6 +50,7 @@ void copyFile(FILE* fp, FILE* fp_cp)
   	fclose(fp);
   	fp = fopen(filename, "w+");
   	fprintf(fp, "%s", str);
+  	printf("??????\n");
   	if(system(cmd_so)){
   		printf("this is 77 line!!\n");
   		exit(1);
