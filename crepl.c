@@ -36,7 +36,7 @@ int main()
 {
 	/*创建文件，用来存放代码*/
 	char *cmd_so = "gcc temp_code.c -shared -fPIC -o temp_code.so -ldl";
-	FILE *fp = fopen(filename, "a+");
+	FILE *fp = fopen(filename, "w+");
 	printf(">> ");
 	while(fgets(code, sizeof(code), stdin) != NULL){
 		if(code[0] == 'i' && code[1] == 'n' && code[2] == 't'){		//如果为函数,生成一个动态链接库
