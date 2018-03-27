@@ -39,18 +39,13 @@ void copyFile(FILE* fp, FILE* fp_cp)
 		printf("canot find the in.txt file!\n");
 		exit(0);
 	}
-	/*if ((fp_cp = fopen(out,"r+"))==NULL) // 写入数据的文件
-	{
-		printf("canot find the out.txt file!\n");
-		exit(0);
-	}*/
 	ch = fgetc(fp_cp);
 	printf("%c\n", ch);
 	while (ch!=EOF)
 	{	printf("this is while\n");
 		printf("%c\n", ch);
 		fputc(ch,fp);
-		putchar(ch); //是in.txt 的内容显示在dos窗口 下
+		putchar(ch);
 		ch = fgetc(fp_cp);
 	}
 	if(system(cmd_so)){
@@ -58,8 +53,6 @@ void copyFile(FILE* fp, FILE* fp_cp)
 		exit(1);
 	}
 	return ;
-//	fclose(fp); // 关闭文件
-//	fclose(fp_cp);
 }
 
 int main() 
@@ -105,10 +98,12 @@ int main()
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
 			fprintf(fp_cp, "int %s(){return %s;}\n", expr_name, code);
+			printf("haha\n");
 		}
 		printf(">> ");
 	}
 	fclose(fp); remove(filename);
+	fclose(fp_cp); remove(filename_cp);
 	remove(libname);
 	return 0;
 }
