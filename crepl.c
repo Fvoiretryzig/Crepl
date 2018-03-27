@@ -6,6 +6,7 @@
 
 char code[2048];
 char *filename = "code.c";
+char *filename_cp = "code_cp.c";
 char *libname = "code.so";
 int cmd_id = 0;
 
@@ -30,11 +31,40 @@ void *func_lookup(char *name)
     return func;   
 }
 
+void copyFile(FILE* fp, FILE* fp_cp)
+{
+	char ch ;
+	fclose(fp);
+	if ((fp = fopen(in,"w+")) == NULL) //in.txt 和out.txt 都在当前工作目录下存放
+	{
+		printf("canot find the in.txt file!\n");
+		exit(0);
+	}
+	/*if ((fp_cp = fopen(out,"r+"))==NULL) // 写入数据的文件
+	{
+		printf("canot find the out.txt file!\n");
+		exit(0);
+	}*/
+	ch = fgetc(fp_cp);
+	printf("%c\n", ch);
+	while (ch!=EOF)
+	{	printf("this is while\n");
+		printf("%c\n", ch);
+		fputc(ch,fp);
+		putchar(ch); //是in.txt 的内容显示在dos窗口 下
+		ch = fgetc(fp_cp);
+	}
+	return ;
+//	fclose(fp); // 关闭文件
+//	fclose(fp_cp);
+}
+
 int main() 
 {
 	/*创建文件，用来存放代码*/
 	char *cmd_so = "gcc code.c -Werror -shared -fPIC -o code.so -ldl";
 	FILE *fp = fopen(filename, "w+");
+	FILE *fp_cp = fopen(filename_cp, "w+");
 	printf(">> ");
 	while(fgets(code, sizeof(code), stdin) != NULL){
 		if(code[0] == 'i' && code[1] == 'n' && code[2] == 't'){		//如果为函数,生成一个动态链接库
@@ -43,8 +73,9 @@ int main()
 				printf("error while linking\n");
 				continue;
 			}
+			fprintf(fp_cp, "%s", code);	//存一个副本
 		}
-		else if(code[0] == 'e' && code[1] == 'x' && code[2] == 'i' && code[3] == 't'){
+		else if(code[0] == 'e' && code[1] == 'x' && code[2] == 'i' && code[3] == 't'){	//退出
 			 break;
 		}
 		else{		//如果是表达式，如果是字母开头是函数，如果是数字开头是表达式
@@ -56,6 +87,8 @@ int main()
 			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
 				printf("error while linking\n");
 				printf(">> ");
+				//把存的正确的复制过去再编译？
+				copyFile(fp, fp_cp);
 				continue;
 			}	
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
