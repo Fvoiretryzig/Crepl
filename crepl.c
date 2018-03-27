@@ -57,15 +57,15 @@ void *func_lookup(char *name)
 
 void copyFile(FILE* fp, FILE* fp_cp)  
 {    
-    char *str;  
+    //char *str;  
     char txt[4096];  
-    int filesize;  
+    //int filesize;  
   	//fprintf(fp, "hayiwojfds\nfj40432432432404djsfo\n32rwef");
     //fseek(fp_cp,0,SEEK_END);   
     //filesize = ftell(fp_cp);  
     //str=(char *)malloc(filesize);  
     //str[0]=0;  
-    str[4096] = "";
+    char str[4096] = "";
     //rewind(fp);  
     while((fgets(txt,4096,fp))!=NULL){  
         strcat(str,txt);  
