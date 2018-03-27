@@ -61,18 +61,22 @@ void copyFile(FILE* fp, FILE* fp_cp)
     char txt[4096];  
     int filesize;  
   	//fprintf(fp, "hayiwojfds\nfj40432432432404djsfo\n32rwef");
-    fseek(fp_cp,0,SEEK_END);   
-    filesize = ftell(fp_cp);  
-    str=(char *)malloc(filesize);  
-    str[0]=0;  
-    rewind(fp);  
+    //fseek(fp_cp,0,SEEK_END);   
+    //filesize = ftell(fp_cp);  
+    //str=(char *)malloc(filesize);  
+    //str[0]=0;  
+    str[4096];
+    //rewind(fp);  
     while((fgets(txt,4096,fp))!=NULL){  
         strcat(str,txt);  
     }  
-  	
   	fclose(fp);
   	fp = fopen(filename, "w+");
-  	fprintf(fp, "%s", str); 
+  	fprintf(fp, "%s", str);
+  	if(system(cmd_so)){
+  		printf("this is 77 line!!\n");
+  		exit(1);
+  	} 
 } 
 
 int main() 
@@ -87,7 +91,7 @@ int main()
 			fprintf(fp, "%s", code);
 			fflush(fp);
 			if(system(cmd_so)){
-				printf("error while linking\n");
+				printf("error while linking at line 94\n");
 				printf(">> ");
 				copyFile(fp, fp_cp);
 				continue;
