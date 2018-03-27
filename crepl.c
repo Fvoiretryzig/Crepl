@@ -56,6 +56,7 @@ int main()
 			printf("expr_name:%s\n", expr_name);
 			code[strlen(code)-1] = '\0';
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
+			fflush(fp);
 			printf("this is before system\n");
 			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
 				printf("error while linking\n");
