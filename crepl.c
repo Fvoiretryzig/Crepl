@@ -65,11 +65,13 @@ int main()
 	while(fgets(code, sizeof(code), stdin) != NULL){
 		if(code[0] == 'i' && code[1] == 'n' && code[2] == 't'){		//如果为函数,生成一个动态链接库
 			fprintf(fp, "%s", code);
+			fflush(fp);
 			if(system(cmd_so)){
 				printf("error while linking\n");
 				continue;
 			}
 			fprintf(fp_cp, "%s", code);	//存一个副本
+			fflush(fp_cp);
 		}
 		else if(code[0] == 'e' && code[1] == 'x' && code[2] == 'i' && code[3] == 't'){	//退出
 			 break;
