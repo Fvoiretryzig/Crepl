@@ -57,7 +57,7 @@ void *func_lookup(char *name)
   	} 
 } */
 
-char *getfileall()  
+char *getfileall(FILE *fp_cp)  
 {    
     char *str;  
     char txt[1000];  
@@ -96,7 +96,7 @@ int main()
 				printf("error while linking at line 94\n");
 				printf(">> ");
 				//copyFile(fp, fp_cp);
-				char *temp = getfileall();
+				char *temp = getfileall(fp_cp);
 				printf("temp:%s\n", temp);
 				exit(0);
 				
