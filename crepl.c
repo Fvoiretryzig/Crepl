@@ -68,6 +68,8 @@ int main()
 			fflush(fp);
 			if(system(cmd_so)){
 				printf("error while linking\n");
+				printf(">> ");
+				copyFile(fp, fp_cp);
 				continue;
 			}
 			fprintf(fp_cp, "%s", code);	//存一个副本
