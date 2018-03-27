@@ -65,7 +65,7 @@ void copyFile(FILE* fp, FILE* fp_cp)
     //filesize = ftell(fp_cp);  
     //str=(char *)malloc(filesize);  
     //str[0]=0;  
-    str[4096];
+    str[4096] = "";
     //rewind(fp);  
     while((fgets(txt,4096,fp))!=NULL){  
         strcat(str,txt);  
