@@ -92,7 +92,7 @@ int main()
 			if(system(cmd_so)){
 				printf("Invalid expression\n");
 				//copyFile(fp, fp_cp);
-				char *temp = getfileall(fp_cp);
+				char *temp = getcontent(fp_cp);
 				//printf("temp:%s\n", temp);
 				fclose(fp);
 				fp = fopen(filename, "w+");
