@@ -62,7 +62,7 @@ int main()
 				printf(">> ");
 				continue;
 			}
-			int (*func)() = func_lookup(expr_name, 0); // 查找XXX对应的函数
+			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
 			if(func == 0){
 				printf("\n>> ");
 				continue;
