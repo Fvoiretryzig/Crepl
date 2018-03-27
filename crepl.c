@@ -53,17 +53,17 @@ int main()
 			char expr_name[32] = "__expr_wrap_";
 			//printf("this is before sprintf\n");
 			sprintf(expr_name, "%s%d", expr_name, cmd_id++);
-			printf("expr_name:%s\n", expr_name);
+			//printf("expr_name:%s\n", expr_name);
 			code[strlen(code)-1] = '\0';
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
 			fflush(fp);
-			printf("this is before system\n");
+			//printf("this is before system\n");
 			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
 				printf("error while linking\n");
 				printf(">> ");
 				continue;
 			}	
-			printf("this is after syscall\n");
+			//printf("this is after syscall\n");
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
 			if(func == 0){
 				printf("\n>> ");
@@ -73,9 +73,9 @@ int main()
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
 		}
-		printf(">>");
+		printf(">> ");
 	}
-	fclose(fp); //remove(filename);
-	//remove(libname);
+	fclose(fp); remove(filename);
+	remove(libname);
 	return 0;
 }
