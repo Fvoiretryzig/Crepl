@@ -64,7 +64,8 @@ int main()
 			if(system(cmd_check)){
 				printf("errors while checking\n");
 				printf(">> ");
-				fclose(check_fp);		
+				fclose(check_fp);
+				remove(check_libname);		
 				continue;
 			}
 			else{
