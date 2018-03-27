@@ -60,7 +60,7 @@ int main()
 			}	
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
 			printf("this is after lookup\n");
-			printf("this is func:%s\n", func);
+			printf("this is func:%d\n", func);
 			if(func == 0){
 				printf("\n>> ");
 				continue;
