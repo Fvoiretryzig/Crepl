@@ -118,7 +118,7 @@ int main()
 				printf("error while linking\n");
 				printf(">> ");
 				//把存的正确的复制过去再编译？
-				copyFile(fp, fp_cp);
+				//copyFile(fp, fp_cp);
 				continue;
 			}	
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
