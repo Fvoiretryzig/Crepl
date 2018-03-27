@@ -70,6 +70,7 @@ void copyFile(FILE* fp, FILE* fp_cp)
     while((fgets(txt,4096,fp))!=NULL){  
         strcat(str,txt);  
     }  
+    printf("%s\n", str);
   	fclose(fp);
   	fp = fopen(filename, "w+");
   	fprintf(fp, "%s", str);
