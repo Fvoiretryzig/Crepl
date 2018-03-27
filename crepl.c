@@ -26,7 +26,7 @@ void *func_lookup(char *name)
 	func = dlsym(handle, name);  
 	if((error = dlerror()) != NULL){  
 		fputs(error, stderr);  
-//		exit(1);  
+		//exit(1);  
 		return 0;
 	}  
     return func;   
@@ -39,7 +39,6 @@ int main()
 	FILE *fp = fopen(filename, "a+");
 	printf(">> ");
 	while(fgets(code, sizeof(code), stdin) != NULL){
-		//printf("this is at 40 lines code:%s\n", code);
 		if(code[0] == 'i' && code[1] == 'n' && code[2] == 't'){		//如果为函数,生成一个动态链接库
 			fprintf(fp, "%s", code);
 			if(system(cmd_so)){
@@ -53,12 +52,9 @@ int main()
 		else{		//如果是表达式，如果是字母开头是函数，如果是数字开头是表达式
 			char expr_name[32] = "__expr_wrap_";
 			//printf("this is before sprintf\n");
-			sprintf(expr_name, "%s%d", expr_name, cmd_id++);
+			sprintf(expr_name, "%s%d", expr_name, cmd_id);
 			printf("expr_name:%s\n", expr_name);
-			printf("code before do:%s\n", code);
-			code[strlen(code)-1] = '\0';
-			printf("code after do:%s\n", code);
-			fprintf(fp, "int %s(){return %s;}\nEOF", expr_name, code);
+			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
 			printf("this is before system\n");
 			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
 				printf("error while linking\n");
@@ -75,7 +71,7 @@ int main()
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
 		}
-		printf(">> ");
+		printf(">>");
 	}
 	fclose(fp); remove(filename);
 	remove(libname);
