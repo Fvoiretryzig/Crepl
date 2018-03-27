@@ -12,8 +12,7 @@ char *cmd_so = "gcc code.c -Werror -shared -fPIC -o code.so -ldl";
 int cmd_id = 0; void *handle;
 
 void *func_lookup(char *name)
-{
-	//void *handle;  
+{ 
     char *error;  
           
     int (*func )();  
@@ -61,9 +60,8 @@ int main()
 		if(code[0] == 'i' && code[1] == 'n' && code[2] == 't'){		//如果为函数,生成一个动态链接库
 			fprintf(fp, "%s", code);
 			fflush(fp);
-			if(system(cmd_so)){
+			if(system(cmd_so)){		//如果编译不对则把存的副本复制
 				printf("Invalid function!!\n");
-				//copyFile(fp, fp_cp);
 				char *temp = getcontent(fp_cp);
 				//printf("temp:%s\n", temp);
 				fclose(fp);
@@ -89,9 +87,8 @@ int main()
 			code[strlen(code)-1] = '\0';
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
 			fflush(fp);
-			if(system(cmd_so)){
+			if(system(cmd_so)){		//如果编译不对则把存的副本复制
 				printf("Invalid expression\n");
-				//copyFile(fp, fp_cp);
 				char *temp = getcontent(fp_cp);
 				//printf("temp:%s\n", temp);
 				fclose(fp);
@@ -106,8 +103,6 @@ int main()
 				continue;
 			}			
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
-			//printf("this is after lookup\n");
-			//printf("this is func:0x%x\n", func);
 			if(func == 0){
 				printf("\n>> ");
 				continue;
