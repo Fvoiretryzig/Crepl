@@ -30,50 +30,23 @@ void *func_lookup(char *name)
     return func;   
 }
 
-/*void copyFile(FILE* fp, FILE* fp_cp)  
-{    
-    //char *str;  
-    char txt[4096];  
-    //int filesize;  
-  	//fprintf(fp, "hayiwojfds\nfj40432432432404djsfo\n32rwef");
-    //fseek(fp_cp,0,SEEK_END);   
-    //filesize = ftell(fp_cp);  
-    //str=(char *)malloc(filesize);  
-    //str[0]=0;  
-    char str[4096] = "";
-    str[0] = 0;
-    //rewind(fp);  
-    while((fgets(txt,4096,fp))!=NULL){  
-        //strcat(str,txt);  
-        printf("txt:%s\n", txt);
-    }  
-    printf("%s\n", str);
-  	fclose(fp);
-  	fp = fopen(filename, "w+");
-  	fprintf(fp, "%s", str);
-  	if(system(cmd_so)){
-  		printf("this is 77 line!!\n");
-  		exit(1);
-  	} 
-} */
-
-char *getfileall(FILE *fp_cp)  
+char *getcontent(FILE *fp_cp)  
 {    
     char *str;  
     char txt[1000];  
     int filesize;  
     fseek(fp_cp,0,SEEK_END);   
-  	printf("I am at 66 line\n");
+  	//printf("I am at 66 line\n");
     filesize = ftell(fp_cp);  
     str=(char *)malloc(filesize);  
     str[0]=0;  
   
     rewind(fp_cp);  
-    printf("I am at 72 line\n");
+    //printf("I am at 72 line\n");
     while((fgets(txt,1000,fp_cp))!=NULL){  
         strcat(str,txt);  
     }  
-    printf("I am at 76 line\n");
+    //printf("I am at 76 line\n");
     return str;  
 }  
 
@@ -89,10 +62,9 @@ int main()
 			fprintf(fp, "%s", code);
 			fflush(fp);
 			if(system(cmd_so)){
-				printf("error while linking at line 94\n");
-				printf(">> ");
+				printf("Invalid function!!\n");
 				//copyFile(fp, fp_cp);
-				char *temp = getfileall(fp_cp);
+				char *temp = getcontent(fp_cp);
 				//printf("temp:%s\n", temp);
 				fclose(fp);
 				fp = fopen(filename, "w+");
@@ -102,6 +74,7 @@ int main()
 					printf("!!!!\n");
 					exit(1);
 				}
+				printf(">> ");
 				continue;
 			}
 			fprintf(fp_cp, "%s", code);	//存一个副本
@@ -117,8 +90,7 @@ int main()
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
 			fflush(fp);
 			if(system(cmd_so)){
-				printf("error while linking at line 131\n");
-				printf(">> ");
+				printf("Invalid expression\n");
 				//copyFile(fp, fp_cp);
 				char *temp = getfileall(fp_cp);
 				//printf("temp:%s\n", temp);
@@ -130,6 +102,7 @@ int main()
 					printf("!!!!\n");
 					exit(1);
 				}
+				printf(">> ");
 				continue;
 			}			
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
