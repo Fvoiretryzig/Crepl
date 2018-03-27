@@ -30,7 +30,7 @@ void *func_lookup(char *name)
     return func;   
 }
 
-void copyFile(FILE* fp, FILE* fp_cp)  
+/*void copyFile(FILE* fp, FILE* fp_cp)  
 {    
     //char *str;  
     char txt[4096];  
@@ -55,7 +55,31 @@ void copyFile(FILE* fp, FILE* fp_cp)
   		printf("this is 77 line!!\n");
   		exit(1);
   	} 
-} 
+} */
+
+char *getfileall()  
+{    
+    char *str;  
+    char txt[1000];  
+    int filesize;  
+    /*if ((fp=fopen(fname,"a+"))==NULL){  
+        printf("打开文件%s错误\n",fname);  
+        return NULL;  
+    }  */
+  	//fprintf(fp, "hayiwojfds\nfj40432432432404djsfo\n32rwef");
+    fseek(fp_cp,0,SEEK_END);   
+  
+    filesize = ftell(fp_cp);  
+    str=(char *)malloc(filesize);  
+    str[0]=0;  
+  
+    rewind(fp_cp);  
+    while((fgets(txt,1000,fp_cp))!=NULL){  
+        strcat(str,txt);  
+    }  
+    fclose(fp_cp);  
+    return str;  
+}  
 
 int main() 
 {
@@ -71,7 +95,11 @@ int main()
 			if(system(cmd_so)){
 				printf("error while linking at line 94\n");
 				printf(">> ");
-				copyFile(fp, fp_cp);
+				//copyFile(fp, fp_cp);
+				char *temp = getfileall();
+				printf("temp:%s\n", temp);
+				exit(0);
+				
 				continue;
 			}
 			fprintf(fp_cp, "%s", code);	//存一个副本
