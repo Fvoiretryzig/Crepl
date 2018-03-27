@@ -30,7 +30,7 @@ void *func_lookup(char *name)
     return func;   
 }
 
-void copyFile(FILE* fp, FILE* fp_cp)
+/*void copyFile(FILE* fp, FILE* fp_cp)
 {
 	char ch ;
 	fclose(fp);
@@ -53,7 +53,27 @@ void copyFile(FILE* fp, FILE* fp_cp)
 		exit(1);
 	}
 	return ;
-}
+}*/
+
+void copyFile(FILE* fp, FILE* fp_cp)  
+{    
+    char *str;  
+    char txt[4096];  
+    int filesize;  
+  	//fprintf(fp, "hayiwojfds\nfj40432432432404djsfo\n32rwef");
+    fseek(fp_cp,0,SEEK_END);   
+    filesize = ftell(fp_cp);  
+    str=(char *)malloc(filesize);  
+    str[0]=0;  
+    rewind(fp);  
+    while((fgets(txt,4096,fp))!=NULL){  
+        strcat(str,txt);  
+    }  
+  	
+  	fclose(fp);
+  	fopen(fp, "w+");
+  	fprintf(fp, "%s", str); 
+} 
 
 int main() 
 {
