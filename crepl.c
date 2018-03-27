@@ -55,9 +55,9 @@ int main()
 			 break;
 		}
 		else{		//如果是表达式，如果是字母开头是函数，如果是数字开头是表达式
-			FILE *check_fp = fopen(check_filename, "w+");
+			//FILE *check_fp = fopen(check_filename, "w+");
 			char expr_name[32] = "__expr_wrap_";
-			char check_name[32] = "check";
+			//char check_name[32] = "check";
 			code[strlen(code)-1] = '\0';
 			/*fprintf(check_fp, "int %s(){return %s;}", check_name, code);
 			fflush(fp);
