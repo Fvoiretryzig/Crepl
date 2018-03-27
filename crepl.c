@@ -94,7 +94,7 @@ int main()
 		printf(">> ");
 	}
 	fclose(fp); remove(filename);
-	
+	remove(check_filename);
 	remove(libname);
 	return 0;
 }

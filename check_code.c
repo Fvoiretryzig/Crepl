@@ -1,0 +1,1 @@
+int check(){return 1+1;}
