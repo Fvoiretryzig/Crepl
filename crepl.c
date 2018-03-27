@@ -60,7 +60,7 @@ int main()
 	/*创建文件，用来存放代码*/
 	char *cmd_so = "gcc code.c -Werror -shared -fPIC -o code.so -ldl";
 	FILE *fp = fopen(filename, "w+");
-	FILE *fp_cp = fopen(filename_cp, "r+");
+	FILE *fp_cp = fopen(filename_cp, "a+");
 	printf(">> ");
 	while(fgets(code, sizeof(code), stdin) != NULL){
 		if(code[0] == 'i' && code[1] == 'n' && code[2] == 't'){		//如果为函数,生成一个动态链接库
