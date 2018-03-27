@@ -44,13 +44,13 @@ void copyFile(FILE* fp, FILE* fp_cp)
     str[0] = 0;
     //rewind(fp);  
     while((fgets(txt,4096,fp))!=NULL){  
-        strcat(str,txt);  
+        //strcat(str,txt);  
+        printf("txt:%s\n", txt);
     }  
     printf("%s\n", str);
   	fclose(fp);
   	fp = fopen(filename, "w+");
   	fprintf(fp, "%s", str);
-  	printf("??????\n");
   	if(system(cmd_so)){
   		printf("this is 77 line!!\n");
   		exit(1);
