@@ -64,7 +64,7 @@ int main()
 			if(system(cmd_check)){
 				printf("errors while checking\n");
 				printf(">> ");
-				fclose(check_filename);
+				fclose(check_fp);		
 				continue;
 			}
 			else{
