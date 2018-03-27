@@ -97,7 +97,7 @@ int main()
 				printf(">> ");
 				//copyFile(fp, fp_cp);
 				char *temp = getfileall(fp_cp);
-				printf("temp:%s\n", temp);
+				//printf("temp:%s\n", temp);
 				fclose(fp);
 				fp = fopen(filename, "w+");
 				fprintf(fp, "%s", temp);
@@ -120,13 +120,29 @@ int main()
 			code[strlen(code)-1] = '\0';
 			fprintf(fp, "int %s(){return %s;}\n", expr_name, code);
 			fflush(fp);
-			if(system(cmd_so)){		//把求值变为函数再加入到动态库中
+			/*if(system(cmd_so)){		//把求值变为函数再加入到动态库中
 				printf("error while linking\n");
 				printf(">> ");
 				//把存的正确的复制过去再编译？
 				//copyFile(fp, fp_cp);
 				continue;
-			}	
+			}	*/
+			if(system(cmd_so)){
+				printf("error while linking at line 131\n");
+				printf(">> ");
+				//copyFile(fp, fp_cp);
+				char *temp = getfileall(fp_cp);
+				//printf("temp:%s\n", temp);
+				fclose(fp);
+				fp = fopen(filename, "w+");
+				fprintf(fp, "%s", temp);
+				fflush(fp);
+				if(system(cmd_so)){
+					printf("!!!!\n");
+					exit(1);
+				}
+				continue;
+			}			
 			int (*func)() = func_lookup(expr_name); // 查找XXX对应的函数
 			//printf("this is after lookup\n");
 			//printf("this is func:0x%x\n", func);
