@@ -54,6 +54,10 @@ void copyFile(FILE* fp, FILE* fp_cp)
 		putchar(ch); //是in.txt 的内容显示在dos窗口 下
 		ch = fgetc(fp_cp);
 	}
+	if(system(cmd_so)){
+		printf("what??????\n");
+		exit(1);
+	}
 	return ;
 //	fclose(fp); // 关闭文件
 //	fclose(fp_cp);
@@ -101,6 +105,7 @@ int main()
 			int value = func(); // 通过函数指针调用
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
+			fprintf(fp_cp, "int %s(){return %s;}\n", expr_name, code);
 		}
 		printf(">> ");
 	}
