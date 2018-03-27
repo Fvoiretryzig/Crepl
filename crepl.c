@@ -98,6 +98,7 @@ int main()
 			printf(">> %s = %d.\n", code, value);	
 			dlclose(handle);	
 			fprintf(fp_cp, "int %s(){return %s;}\n", expr_name, code);
+			fflush(fp_cp);
 			printf("haha\n");
 		}
 		printf(">> ");
