@@ -71,7 +71,7 @@ void copyFile(FILE* fp, FILE* fp_cp)
     }  
   	
   	fclose(fp);
-  	fopen(fp, "w+");
+  	fp = fopen(filename, "w+");
   	fprintf(fp, "%s", str); 
 } 
 
