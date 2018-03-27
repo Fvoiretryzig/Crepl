@@ -8,9 +8,8 @@ char code[2048];
 char *filename = "code.c";
 char *filename_cp = "code_cp.c";
 char *libname = "code.so";
-int cmd_id = 0;
-
-void *handle;
+char *cmd_so = "gcc code.c -Werror -shared -fPIC -o code.so -ldl";
+int cmd_id = 0; void *handle;
 
 void *func_lookup(char *name)
 {
